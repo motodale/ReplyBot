@@ -1,7 +1,5 @@
 import praw # simple interface to the reddit API, also handles rate limiting of requests
 import time
-import os
-import sys
 import sqlite3
 try:
     import bot #This is a file in my python library which contains my Bot's username and password. I can push code to Git without showing credentials
@@ -50,12 +48,11 @@ def scanSub():
         cur.execute('SELECT * FROM oldposts WHERE ID="%s"' % pid)
         if not cur.fetchone():
             try:
-                print('Found new comment: ' + pid + ' by ' + pauthor)
                 cur.execute('INSERT INTO oldposts VALUES("%s")' % pid)
                 pbody = post.body.lower()
                 if PARENTSTRING in pbody:
-                    print('\t ^found parenstring. Replying to ' + pauthor)
-                    post.reply(REPLYSTRING)
+                    print('Found ' + pid + ' by ' + pauthor)
+                    #post.reply(REPLYSTRING)
 
             except IndexError:
                 pass
