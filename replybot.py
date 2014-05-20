@@ -32,7 +32,6 @@ cur = sql.cursor()
 cur.execute('CREATE TABLE IF NOT EXISTS oldposts(ID TEXT)')
 print('Loaded Completed table')
 
-
 sql.commit()
 
 r = praw.Reddit(USERAGENT)
@@ -52,7 +51,7 @@ def scanSub():
                 pbody = post.body.lower()
                 if PARENTSTRING in pbody:
                     print('Found ' + pid + ' by ' + pauthor)
-                    #post.reply(REPLYSTRING)
+                    post.reply(REPLYSTRING)
 
             except IndexError:
                 pass
