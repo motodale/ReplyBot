@@ -6,15 +6,15 @@ try:
 except ImportError:
     pass
 
-USERNAME  = bot.getu()
+USERNAME  = bot.getuG()
 #This is the bot's Username. In order to send mail, he must have some amount of Karma.
-PASSWORD  = bot.getp()
+PASSWORD  = bot.getpG()
 #This is the bot's Password. 
-USERAGENT = bot.geta()
+USERAGENT = bot.getaG()
 #This is a short description of what the bot does. For example "Newsletter bot"
-SUBREDDIT = "all"
+SUBREDDIT = "test"
 #This is the sub or list of subs to scan for new posts. For a single sub, use "sub1". For multiple subreddits, use "sub1+sub2+sub3+..."
-PARENTSTRING = "I'm hungry"
+PARENTSTRING = "i'm hungry"
 #This is the word that you want to reply to
 REPLYSTRING = "Hi hungry, I'm dad"
 #This is the word you want to put in reply
@@ -50,7 +50,7 @@ def scanSub():
                 cur.execute('INSERT INTO oldposts VALUES("%s")' % pid)
                 pbody = post.body.lower()
                 if PARENTSTRING in pbody:
-                    print('Found ' + pid + ' by ' + pauthor)
+                    print('Replying to ' + pid + ' by ' + pauthor)
                     post.reply(REPLYSTRING)
 
             except IndexError:
