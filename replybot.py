@@ -14,7 +14,7 @@ USERAGENT = bot.getaG()
 #This is a short description of what the bot does. For example "Newsletter bot"
 SUBREDDIT = "test"
 #This is the sub or list of subs to scan for new posts. For a single sub, use "sub1". For multiple subreddits, use "sub1+sub2+sub3+..."
-PARENTSTRING = "i'm hungry"
+PARENTSTRING = "I'm hungry"
 #This is the word that you want to reply to
 REPLYSTRING = "Hi hungry, I'm dad"
 #This is the word you want to put in reply
@@ -23,6 +23,7 @@ MAXPOSTS = 100
 WAIT = 20
 #This is how many seconds you will wait between cycles. The bot is completely inactive during this time.
 WAITS = str(WAIT)
+PARENTLOWER = PARENTSTRING.lower()
 #Do not edit this part
 
 sql = sqlite3.connect('sql.db')
@@ -49,7 +50,7 @@ def scanSub():
             try:
                 cur.execute('INSERT INTO oldposts VALUES("%s")' % pid)
                 pbody = post.body.lower()
-                if PARENTSTRING in pbody:
+                if PARENTLOWER in pbody:
                     print('Replying to ' + pid + ' by ' + pauthor)
                     post.reply(REPLYSTRING)
 
