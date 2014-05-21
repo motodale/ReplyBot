@@ -1,18 +1,16 @@
 import praw # simple interface to the reddit API, also handles rate limiting of requests
 import time
 import sqlite3
-try:
-    import bot #This is a file in my python library which contains my Bot's username and password. I can push code to Git without showing credentials
-except ImportError:
-    pass
 
-USERNAME  = bot.getuG()
+'''USER CONFIGURATION'''
+
+USERNAME  = ""
 #This is the bot's Username. In order to send mail, he must have some amount of Karma.
-PASSWORD  = bot.getpG()
+PASSWORD  = ""
 #This is the bot's Password. 
-USERAGENT = bot.getaG()
+USERAGENT = ""
 #This is a short description of what the bot does. For example "Newsletter bot"
-SUBREDDIT = "test"
+SUBREDDIT = ""
 #This is the sub or list of subs to scan for new posts. For a single sub, use "sub1". For multiple subreddits, use "sub1+sub2+sub3+..."
 PARENTSTRING = "I'm hungry"
 #This is the word that you want to reply to
@@ -22,9 +20,23 @@ MAXPOSTS = 100
 #This is how many posts you want to retreieve all at once. Max 100, but your subs probably don't get 100 posts per minute.
 WAIT = 20
 #This is how many seconds you will wait between cycles. The bot is completely inactive during this time.
+
+
+'''All done!'''
+
+
+
+
 WAITS = str(WAIT)
 PARENTLOWER = PARENTSTRING.lower()
-#Do not edit this part
+try:
+    import bot #This is a file in my python library which contains my Bot's username and password. I can push code to Git without showing credentials
+    USERNAME = bot.getu()
+    PASSWORD = bot.getp()
+    USERAGENT = bot.geta()
+    SUBREDDIT = "test"
+except ImportError:
+    pass
 
 sql = sqlite3.connect('sql.db')
 print('Loaded SQL Database')
