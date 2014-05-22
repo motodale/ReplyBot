@@ -10,7 +10,7 @@ PASSWORD  = ""
 #This is the bot's Password. 
 USERAGENT = ""
 #This is a short description of what the bot does. For example "Newsletter bot"
-SUBREDDIT = ""
+SUBREDDIT = "all"
 #This is the sub or list of subs to scan for new posts. For a single sub, use "sub1". For multiple subreddits, use "sub1+sub2+sub3+..."
 PARENTSTRING = "I'm hungry"
 #This is the word that you want to reply to
@@ -28,13 +28,11 @@ WAIT = 20
 
 
 WAITS = str(WAIT)
-PARENTLOWER = PARENTSTRING.lower()
 try:
     import bot #This is a file in my python library which contains my Bot's username and password. I can push code to Git without showing credentials
     USERNAME = bot.getu()
     PASSWORD = bot.getp()
     USERAGENT = bot.geta()
-    SUBREDDIT = "test"
 except ImportError:
     pass
 
@@ -62,9 +60,9 @@ def scanSub():
             try:
                 cur.execute('INSERT INTO oldposts VALUES("%s")' % pid)
                 pbody = post.body.lower()
-                if PARENTLOWER in pbody:
+                if PARENTSTRING.lower() in pbody:
                     print('Replying to ' + pid + ' by ' + pauthor)
-                    post.reply(REPLYSTRING)
+                    #post.reply(REPLYSTRING)
 
             except IndexError:
                 pass
