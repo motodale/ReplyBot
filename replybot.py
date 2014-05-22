@@ -62,7 +62,7 @@ def scanSub():
                 pbody = post.body.lower()
                 if PARENTSTRING.lower() in pbody:
                     print('Replying to ' + pid + ' by ' + pauthor)
-                    #post.reply(REPLYSTRING)
+                    post.reply(REPLYSTRING)
 
             except IndexError:
                 pass
